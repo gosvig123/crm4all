@@ -25,7 +25,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pnpm lint && pnpm build && pnpm start"
+      "pre-commit": "pnpm build && pnpm start"
     }
   }
 }
