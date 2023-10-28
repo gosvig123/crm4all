@@ -1,3 +1,5 @@
+'use client';
+
 import {
   FaHome,
   FaDollarSign,
@@ -7,22 +9,19 @@ import {
   FaEnvelope,
 } from 'react-icons/fa';
 
-// Constants for easy adjustments
 const ICON_SIZE = 18;
-const TEXT_SIZE_CLASSES = 'text-lg md:text-xl'; // Adjust text size classes here
-const GAP_SIZE_CLASSES = 'gap-2 md:gap-3'; // Adjust gap size classes here
-const SIDEBAR_WIDTH_CLASSES = 'max-w-fit'; // Adjust sidebar width classes here
+const TEXT_SIZE_CLASSES = 'text-md';
+const GAP_SIZE_CLASSES = 'gap-2 md:gap-3';
+const SIDEBAR_WIDTH_CLASSES = 'max-w-fit';
 
 export default function Sidebar() {
   return (
     <div
-      className={`min-h-full p-3 md:p-4 lg:p-6 flex flex-col justify-between flex-1 ${SIDEBAR_WIDTH_CLASSES} border border-dashed border-gray-300 bg-white`}
+      className={`min-h-full  px-4 py-6 hidden md:flex  flex-col justify-between flex-1 ${SIDEBAR_WIDTH_CLASSES} border border-dashed border-gray-300 bg-white`}
     >
       <div className='flex flex-col gap-10'>
         <div>this is a logo</div>
-        <h1 className={`${TEXT_SIZE_CLASSES}`}>
-          This is the primary header
-        </h1>
+        <h1 className={`${TEXT_SIZE_CLASSES}`}>This is the</h1>
 
         <nav className='flex flex-col gap-3'>
           <a
@@ -68,7 +67,6 @@ export default function Sidebar() {
         <FaEnvelope size={ICON_SIZE} />
         <div>
           <div>User Name</div>
-          <div>user@example.com</div>
         </div>
       </div>
     </div>
