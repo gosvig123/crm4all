@@ -1,7 +1,8 @@
 import { ColumnData } from '@/types';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import DraggableCard from './draggableCard';
+import ColumnHeader from './comlumnHeader';
 const CardDragType = 'CARD';
 const ColumnDragType = 'COLUMN';
 
@@ -15,8 +16,17 @@ const DraggableColumn: React.FC<
       fromColumnId: number,
       toColumnId: number
     ) => void;
+    deleteColumn: (columnId: number) => void;
   }
-> = ({ id, title, contacts, index, moveColumn, moveCard }) => {
+> = ({
+  id,
+  title,
+  contacts,
+  index,
+  moveColumn,
+  moveCard,
+  deleteColumn,
+}) => {
   const columnRef = useRef(null);
 
   const cardContainerRef = useRef(null);
@@ -55,19 +65,27 @@ const DraggableColumn: React.FC<
       }
     },
   });
+  const [editableTitle, setEditableTitle] = useState(title);
 
   connectDrag(columnRef);
   connectColumnDrop(columnRef);
   connectCardDrop(cardContainerRef);
 
+  const handleDeleteColumn = () => {
+    deleteColumn(id);
+  };
+
+  const handleEditTitle = (newTitle: string) => {
+    setEditableTitle(newTitle);
+  };
+
   return (
     <div ref={columnRef} className='bg-gray-100 p-2 rounded'>
-      <div className='flex justify-between items-center mb-4'>
-        <h2 className='text-xl font-semibold text-gray-700'>
-          {title}
-        </h2>
-        <button className='text-red-500 text-xl font-bold'>×</button>
-      </div>
+      <ColumnHeader
+        title={title}
+        onDelete={handleDeleteColumn} // <-- update this
+        onEdit={handleEditTitle}
+      />
       <div
         ref={cardContainerRef}
         className='space-y-3'

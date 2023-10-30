@@ -21,6 +21,11 @@ const KanbanBoard: React.FC = () => {
     setColumns([...columns, newColumn]);
   };
 
+  const deleteColumn = (columnId: number) => {
+    const newColumns = columns.filter((col) => col.id !== columnId);
+    setColumns(newColumns);
+  };
+
   const moveCard = (
     fromIndex: number,
     toIndex: number,
@@ -57,6 +62,7 @@ const KanbanBoard: React.FC = () => {
             index={index}
             moveColumn={moveColumn}
             moveCard={moveCard}
+            deleteColumn={deleteColumn}
           />
         ))}
         <Button
