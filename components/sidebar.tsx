@@ -32,7 +32,7 @@ export default function Sidebar() {
             Home
           </a>
           <a
-            href='/sales'
+            href='/opportunities'
             className={`flex items-center ${GAP_SIZE_CLASSES} ${TEXT_SIZE_CLASSES} text-gray-700 hover:text-black`}
           >
             <FaDollarSign size={ICON_SIZE} />
