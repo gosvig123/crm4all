@@ -18,7 +18,7 @@ export function SheetDemo() {
       <SheetTrigger asChild>
         <Button variant='outline'>Open</Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className='min-w-[40rem] max-w[screen]'>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>

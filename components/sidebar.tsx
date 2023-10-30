@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import {
   FaHome,
   FaDollarSign,
@@ -24,27 +25,30 @@ export default function Sidebar() {
         <h1 className={`${TEXT_SIZE_CLASSES}`}>This is the</h1>
 
         <nav className='flex flex-col gap-3'>
-          <a
-            href='/home'
-            className={`flex items-center ${GAP_SIZE_CLASSES} ${TEXT_SIZE_CLASSES} text-gray-700 hover:text-black`}
+          <Link
+            href={'/'}
+            className={`flex items-center ${GAP_SIZE_CLASSES} ${TEXT_SIZE_CLASSES} text-gray-700`}
           >
             <FaHome size={ICON_SIZE} />
             Home
-          </a>
-          <a
-            href='/opportunities'
-            className={`flex items-center ${GAP_SIZE_CLASSES} ${TEXT_SIZE_CLASSES} text-gray-700 hover:text-black`}
+          </Link>
+
+          <Link
+            href={'/opportunities'}
+            className={`flex items-center ${GAP_SIZE_CLASSES} ${TEXT_SIZE_CLASSES} text-gray-700`}
           >
             <FaDollarSign size={ICON_SIZE} />
             Opportunities
-          </a>
-          <a
-            href='/contacts'
-            className={`flex items-center ${GAP_SIZE_CLASSES} ${TEXT_SIZE_CLASSES} text-gray-700 hover:text-black`}
+          </Link>
+
+          <Link
+            href={'/contacts'}
+            className={`flex items-center ${GAP_SIZE_CLASSES} ${TEXT_SIZE_CLASSES} text-gray-700`}
           >
             <FaAddressBook size={ICON_SIZE} />
             Contacts
-          </a>
+          </Link>
+
           <a
             href='/team'
             className={`flex items-center ${GAP_SIZE_CLASSES} ${TEXT_SIZE_CLASSES} text-gray-700 hover:text-black`}

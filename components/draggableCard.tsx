@@ -1,6 +1,6 @@
+import SheetDemo from './sideoverlay';
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { Button } from './ui/button';
 import { Contact } from '@/types';
 const CardDragType = 'CARD';
 
@@ -65,7 +65,7 @@ const DraggableCard: React.FC<
             Notes: {notes}
           </div>
           <div className='flex justify-end mt-2'>
-            <Button variant={'secondary'}>Edit</Button>
+            <SheetDemo />
           </div>
         </div>
       </div>
