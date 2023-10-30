@@ -12,4 +12,3 @@ export type ColumnData = {
   title: string;
   contacts: Contact[];
 };
-

@@ -2,7 +2,7 @@ import Sidebar from '@/components/sidebar';
 
 import * as React from 'react';
 
-import { DataTableDemo } from '@/components/teamtable';
+import { DataTableDemo } from '@/components/salesTable';
 
 export default function Home() {
   return (
