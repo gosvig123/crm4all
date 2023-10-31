@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import { useIsEditing } from '@/hooks/isEditingContext';
+import { Button } from './ui/button';
 interface ColumnHeaderProps {
   title: string;
   onDelete: () => void;
@@ -19,9 +20,11 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = ({
     setIsEditing(false);
   };
 
+  const [editing, setEditing] = useIsEditing();
+
   return (
     <div className='flex justify-between items-center mb-4'>
-      {isEditing ? (
+      {editing ? (
         <input
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)}
@@ -34,13 +37,17 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         </h2>
       )}
       <div>
-        <button onClick={() => setIsEditing(true)}>Edit</button>
-        <button
-          onClick={onDelete}
-          className='text-red-500 text-xl font-bold'
-        >
-          ×
-        </button>
+        {editing && (
+          <div className='flex gap-2'>
+            <Button size={'sm'}>Update</Button>
+            <Button
+              onClick={onDelete}
+              className='text-red-500 text-xl font-bold bg-transparent '
+            >
+              ×
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
