@@ -1,5 +1,5 @@
 import Sidebar from '@/components/sidebar';
-import TeamTable from '@/components/teamTable';
+import TeamTable from '@/components/teamtable';
 const teamPage = () => {
   return (
     <div className='flex min-h-screen'>
