@@ -6,19 +6,30 @@ import {
   TabsTrigger,
   TabsContent,
 } from '@radix-ui/react-tabs';
-
+import AccordionDemo from './communicationCard';
+import DemoReportAnIssue from './opportunitycard';
 const CompanyTabs = () => {
   return (
-    <Tabs defaultValue='account' className='w-[400px]'>
-      <TabsList className='grid w-full grid-cols-2'>
-        <TabsTrigger value='account'>Account</TabsTrigger>
-        <TabsTrigger value='password'>Password</TabsTrigger>
+    <Tabs defaultValue='Info' className='w-[95%]'>
+      <TabsList className='grid w-full grid-cols-2 gap-5 '>
+        <TabsTrigger
+          className='rounded-md p-1  border border-dotted border-blue-800'
+          value='Info'
+        >
+          Info
+        </TabsTrigger>
+        <TabsTrigger
+          className='rounded-md p-1  border border-dotted border-blue-800'
+          value='Communication'
+        >
+          Communication
+        </TabsTrigger>
       </TabsList>
-      <TabsContent value='account'>
-        Make changes to your account here.
+      <TabsContent value='Info' className='bg-white mt-5'>
+        <DemoReportAnIssue />
       </TabsContent>
-      <TabsContent value='password'>
-        Change your password here.
+      <TabsContent value='Communication'>
+        <AccordionDemo />
       </TabsContent>
     </Tabs>
   );

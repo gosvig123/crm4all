@@ -1,8 +1,8 @@
-import SheetDemo from './sideoverlay';
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { Contact } from '@/types';
 const CardDragType = 'CARD';
+import Overlay from './sideoverlay';
 
 const DraggableCard: React.FC<
   Contact & {
@@ -65,7 +65,7 @@ const DraggableCard: React.FC<
             Notes: {notes}
           </div>
           <div className='flex justify-end mt-2'>
-            <SheetDemo />
+            <Overlay />
           </div>
         </div>
       </div>
