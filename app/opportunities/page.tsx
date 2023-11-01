@@ -1,11 +1,10 @@
 'use client';
 import Sidebar from '@/components/sidebar';
 import { Switch } from '@/components/ui/switch';
-import * as React from 'react';
 
 import { useIsEditing } from '@/hooks/isEditingContext';
 import KanbanBoard from '@/components/kanban';
-export default function Home() {
+export default function Opportunities() {
   const [isEditing, toggleEditing] = useIsEditing();
 
   const handleToggle = () => {
