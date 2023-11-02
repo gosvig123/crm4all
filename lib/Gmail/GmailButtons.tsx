@@ -2,8 +2,7 @@
 // filename: GmailButtons.tsx// filename: GmailButtons.tsx
 import React, { useEffect } from 'react';
 import { authorizeAndInitialize } from '@/lib/Gmail/GmailAuth';
-import { sendEmail } from '@/lib/Gmail/sendEmail';
-
+import { sendEmail } from './sendEmail';
 const GmailButtons = () => {
   const [gapi, setGapi] = React.useState(null);
 

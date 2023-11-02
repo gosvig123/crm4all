@@ -3,7 +3,7 @@
 'use client';
 import { Button } from './ui/button';
 import React, { useState } from 'react';
-import { sendEmail } from '@/lib/Gmail/SendEmail';
+import { sendEmail } from '@/lib/Gmail/sendEmail';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 
