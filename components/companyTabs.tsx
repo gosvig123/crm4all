@@ -1,12 +1,11 @@
 // CompanyTabs.tsx
-
 import {
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
 } from '@radix-ui/react-tabs';
-import AccordionDemo from './communicationCard';
+import AccordionDemo from './communicationTab';
 import DemoReportAnIssue from './opportunitycard';
 const CompanyTabs = () => {
   return (

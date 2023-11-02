@@ -12,7 +12,7 @@ export function Overlay() {
       <SheetTrigger asChild>
         <Button variant='outline'>Open</Button>
       </SheetTrigger>
-      <SheetContent className='min-w-[40rem] max-w-[screen]'>
+      <SheetContent className='min-w-[55rem] max-w-[screen]'>
         <SheetHeader>
           <CompanyTabs />
         </SheetHeader>

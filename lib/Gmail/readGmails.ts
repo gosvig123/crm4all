@@ -12,7 +12,6 @@ type Email = {
 };
 
 export const listEmails = async (gapi: any): Promise<Email[]> => {
-  console.log('gapi argument in listEmails:', gapi); // Add this line
 
   try {
     if (!gapi || !gapi.client || !gapi.client.gmail) {
@@ -70,7 +69,7 @@ export const listEmails = async (gapi: any): Promise<Email[]> => {
               // Decode the Base64 string to HTML
               const decodedHtml = atob(base64String);
               // Convert the HTML to plain text
-              const body = htmlToText(decodedHtml, { wordwrap: 130 });
+              const body = decodedHtml;
               return { subject, from, date, body };
             }
           }

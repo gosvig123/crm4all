@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/accordion';
 import { listEmails } from '@/lib/Gmail/readGmails';
 import { authorizeAndInitialize } from '@/lib/Gmail/GmailAuth';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 type Email = {
   subject: string;
@@ -27,16 +27,23 @@ export function AccordionDemo() {
       const gapiInstance = await authorizeAndInitialize();
       console.log('Gapi initialized:', gapiInstance);
       setGapi(gapiInstance);
-      setIsLoading(false); 
+      setIsLoading(false);
     };
 
     loadGapi();
   }, []);
 
+  function formatDate(dateString: string) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}/${month}/${day}`;
+  }
   useEffect(() => {
     const fetchEmails = async () => {
       console.log('Fetching emails with gapi:', gapi);
-      if (isLoading || !gapi) return; // Return early if gapi is not yet initialized
+      if (isLoading || !gapi) return;
       const emailData = await listEmails(gapi);
       if (!emailData) return;
       setEmails(emailData);
@@ -45,19 +52,32 @@ export function AccordionDemo() {
     fetchEmails();
   }, [gapi, isLoading]);
 
+  const accordionContentRef = useRef<HTMLDivElement | null>(null);
+
   return isLoading ? (
     <div>Loading...</div>
   ) : (
-    <Accordion type='single' collapsible className='w-full mt-5'>
+    <Accordion
+      type='single'
+      collapsible
+      className='w-full h-[90vh] mt-5 overflow-y-auto'
+    >
       {emails.map((email, index) => (
         <AccordionItem value={`item-${index}`} key={index}>
-          <AccordionTrigger className='bg-white text-black border border-dotted p-2'>
-            <div className='font-bold'>{email.subject}</div>
+          <AccordionTrigger className='bg-white text-black border border-dotted p-2 flex flex-row overflow-hidden'>
+            <div className='font-bold text-left w-1/2 overflow-hidden flex-1 text-ellipsis whitespace-nowrap'>
+              {email.subject}
+            </div>
             <div className='text-sm'>
-              From: {email.from} | Date: {email.date}
+              Date: {formatDate(email.date)}
             </div>
           </AccordionTrigger>
-          <AccordionContent>{email.body}</AccordionContent>
+          <AccordionContent
+            className='bg-white text-black max-h[50vh] overflow-auto'
+            ref={accordionContentRef}
+          >
+            <div dangerouslySetInnerHTML={{ __html: email.body }} />
+          </AccordionContent>
         </AccordionItem>
       ))}
     </Accordion>
