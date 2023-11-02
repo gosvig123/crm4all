@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   title: 'CRM4ALL',
   description: 'Crm the way it should be',
 };
-import { IsEditingProvider } from '@/hooks/isEditingContext';
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -17,9 +16,7 @@ interface RootLayoutProps {
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang='en'>
-      <body className={inter.className}>
-        <IsEditingProvider>{children}</IsEditingProvider>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 };

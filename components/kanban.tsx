@@ -5,7 +5,8 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Button } from './ui/button';
 import { ColumnData } from '@/types';
 import DraggableColumn from './draggableColumn';
-import { useIsEditing } from '@/hooks/isEditingContext';
+import { editKanban } from '@/signals/signals';
+import { effect } from '@preact/signals-core';
 
 const KanbanBoard: React.FC = () => {
   const [columns, setColumns] = useState<ColumnData[]>(testData);
@@ -45,7 +46,13 @@ const KanbanBoard: React.FC = () => {
     setColumns(newColumns);
   };
 
-  const [isEditing, toggleEditing] = useIsEditing();
+  const [isEditing, toggleEditing] = useState(false);
+
+  effect(() => {
+    if (editKanban.value !== isEditing) {
+      toggleEditing(editKanban.value);
+    }
+  });
 
   const moveColumn = (fromIndex: number, toIndex: number) => {
     const newColumns = [...columns];

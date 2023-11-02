@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useIsEditing } from '@/hooks/isEditingContext';
 import { Button } from './ui/button';
+import { editKanban } from '@/signals/signals';
+import { effect } from '@preact/signals-core';
 interface ColumnHeaderProps {
   title: string;
   onDelete: () => void;
@@ -13,6 +14,7 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   onEdit,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [editing, setEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
 
   const handleEdit = () => {
@@ -20,7 +22,11 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = ({
     setIsEditing(false);
   };
 
-  const [editing, setEditing] = useIsEditing();
+  effect(() => {
+    if (editKanban.value !== editing) {
+      setEditing(editKanban.value);
+    }
+  });
 
   return (
     <div className='flex justify-between items-center mb-4'>

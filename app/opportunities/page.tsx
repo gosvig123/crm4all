@@ -2,13 +2,11 @@
 import Sidebar from '@/components/sidebar';
 import { Switch } from '@/components/ui/switch';
 
-import { useIsEditing } from '@/hooks/isEditingContext';
+import { editKanban } from '@/signals/signals';
 import KanbanBoard from '@/components/kanban';
 export default function Opportunities() {
-  const [isEditing, toggleEditing] = useIsEditing();
-
   const handleToggle = () => {
-    toggleEditing();
+    editKanban.value = !editKanban.value;
   };
 
   return (
