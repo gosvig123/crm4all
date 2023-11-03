@@ -1,5 +1,4 @@
 'use client';
-import { getTypeformToken } from '@/serverActions/getTypeformToken';
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 
@@ -15,7 +14,20 @@ const Page = () => {
     const code = urlParams.get('code');
     if (code) {
       setAuthCode(code);
-      getTypeformToken(code);
+
+      async function getToken() {
+        const token = await fetch('./api/typeform', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            code: code,
+          }),
+        });
+        console.log(token);
+      }
+      getToken();
     }
   }, []);
 
