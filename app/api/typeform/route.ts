@@ -34,10 +34,26 @@ export async function POST(request: Request) {
   }
 
   const data = await response.json();
+  const worksSpaceForms = await fetch(
+    `https://api.typeform.com/forms`,
+    {
+      headers: {
+        Authorization: `Bearer ${data.access_token}`,
+      },
+    }
+  );
 
-  console.log(data);
+  if (!worksSpaceForms.ok) {
+    console.error(
+      'Failed to fetch access token:',
+      response.statusText
+    );
+    return;
+  }
 
-  return new Response(JSON.stringify(data), {
+  const forms = await worksSpaceForms.json();
+
+  return new Response(JSON.stringify(forms), {
     headers: { 'Content-Type': 'application/json' },
   });
 }

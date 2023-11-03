@@ -17,6 +17,7 @@ const Page = () => {
       fetchToken(code);
     }
   }, []);
+  
 
   const fetchToken = async (code: string) => {
     const response = await fetch('/api/typeform', {
