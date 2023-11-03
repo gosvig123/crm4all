@@ -14,23 +14,19 @@ const Page = () => {
     const code = urlParams.get('code');
     if (code) {
       setAuthCode(code);
-
-      async function getToken() {
-        const token = await fetch('./api/typeform', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            code: code,
-          }),
-        });
-        console.log(token);
-      }
-      getToken();
+      fetchToken(code);
     }
   }, []);
 
+  const fetchToken = async (code: string) => {
+    const response = await fetch('/api/typeform', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
   return (
     <div>
       <h1>Page</h1>
