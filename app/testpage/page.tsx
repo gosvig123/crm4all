@@ -6,29 +6,8 @@ import { Button } from '@/components/ui/button';
 const Page = () => {
   const [authCode, setAuthCode] = useState<string | null>(null);
 
-  const handleClick = () => {
-    window.location.href =
-      'https://api.typeform.com/oauth/authorize?client_id=5vujD8k4DQ97UMeHycGqiyZ5yKdiFj7Uyuo8iAB1o1wg&redirect_uri=https://crm4all.vercel.app/testpage/&scope=forms:read+forms:write';
-  };
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    console.log('URL:', window.location.href);
-    console.log('URL Params:', urlParams);
-    const code = urlParams.get('code');
-    console.log('Code:', code);
-    if (!code) {
-      return;
-    }
-    setAuthCode(code);
-    getAccessToken();
-  }, []);
-
-  const getAccessToken = async () => {
-    if (!authCode) {
-      return;
-    }
-    console.log('Fetching access token...', authCode);
+  const getAccessToken = async (authorizationCode: string) => {
+    console.log('Fetching access token...', authorizationCode);
     const response = await fetch(
       'https://api.typeform.com/oauth/token',
       {
@@ -38,7 +17,7 @@ const Page = () => {
         },
         body: new URLSearchParams({
           grant_type: 'authorization_code',
-          code: authCode,
+          code: authorizationCode,
           client_id: '5vujD8k4DQ97UMeHycGqiyZ5yKdiFj7Uyuo8iAB1o1wg',
           client_secret:
             'Gnr5fup1gauwC8GhHV9XyPDacGh5typQsUK6ZKp4AJUr',
@@ -58,6 +37,18 @@ const Page = () => {
     const data = await response.json();
     console.log('Access Token:', data.access_token);
   };
+  const handleClick = () => {
+    window.location.href =
+      'https://api.typeform.com/oauth/authorize?client_id=5vujD8k4DQ97UMeHycGqiyZ5yKdiFj7Uyuo8iAB1o1wg&redirect_uri=https://crm4all.vercel.app/testpage/&scope=forms:read+forms:write';
+  };
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    if (code) {
+      setAuthCode(code);
+      getAccessToken(code);
+    }
+  }, []);
 
   return (
     <div>
