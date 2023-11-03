@@ -18,7 +18,7 @@ const getAccessToken = async (authorizationCode: string) => {
         code: authorizationCode,
         client_id: '5vujD8k4DQ97UMeHycGqiyZ5yKdiFj7Uyuo8iAB1o1wg',
         client_secret: 'Gnr5fup1gauwC8GhHV9XyPDacGh5typQsUK6ZKp4AJUr',
-        redirect_uri: 'https://crm4all.vercel.app/api/typeform',
+        redirect_uri: 'https://crm4all.vercel.app/testpage/',
       }),
     }
   );
