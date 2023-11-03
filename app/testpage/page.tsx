@@ -6,11 +6,8 @@ import { Button } from '@/components/ui/button';
 const Page = () => {
   const [authCode, setAuthCode] = useState<string | null>(null);
 
-  const getAccessToken = async () => {
-    if (!authCode) {
-      return;
-    }
-    console.log('Fetching access token...', authCode);
+  const getAccessToken = async (authorizationCode: string) => {
+    console.log('Fetching access token...', authorizationCode);
     const response = await fetch(
       'https://api.typeform.com/oauth/token',
       {
@@ -20,7 +17,7 @@ const Page = () => {
         },
         body: new URLSearchParams({
           grant_type: 'authorization_code',
-          code: authCode,
+          code: authorizationCode,
           client_id: '5vujD8k4DQ97UMeHycGqiyZ5yKdiFj7Uyuo8iAB1o1wg',
           client_secret:
             'Gnr5fup1gauwC8GhHV9XyPDacGh5typQsUK6ZKp4AJUr',
@@ -46,16 +43,11 @@ const Page = () => {
   };
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-
-    console.log('URL:', window.location.href);
-    console.log('URL Params:', urlParams);
     const code = urlParams.get('code');
-    console.log('Code:', code);
-    if (!code) {
-      return;
+    if (code) {
+      setAuthCode(code);
+      getAccessToken(code);
     }
-    setAuthCode(code);
-    getAccessToken();
   }, []);
 
   return (
