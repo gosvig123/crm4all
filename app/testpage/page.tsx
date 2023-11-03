@@ -22,7 +22,7 @@ const Page = () => {
     }
     setAuthCode(code);
     getAccessToken();
-  }, [window.location]);
+  }, []);
 
   const getAccessToken = async () => {
     if (!authCode) {
