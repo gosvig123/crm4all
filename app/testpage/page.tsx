@@ -1,5 +1,5 @@
 'use client';
-import { getAccessToken } from '@/serverActions/getTypeformToken';
+import { getTypeformToken } from '@/serverActions/getTypeformToken';
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 
@@ -15,7 +15,7 @@ const Page = () => {
     const code = urlParams.get('code');
     if (code) {
       setAuthCode(code);
-      getAccessToken(code);
+      getTypeformToken(code);
     }
   }, []);
 
